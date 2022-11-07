@@ -15,6 +15,7 @@ export const createRoom = async (req, res, next) => {
     } catch (err) {
       next(err);
     }
+    
     res.status(200).json(savedRoom);
   } catch (err) {
     next(err);
