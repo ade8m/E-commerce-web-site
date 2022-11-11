@@ -1,9 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import authroute from "./Routes/auth.js"
-import hotelroute from "./Routes/hotel.js"
+import authroute from "./Routes/auth.js";
+import hotelroute from "./Routes/hotel.js";
+import roomroute from "./Routes/room.js";
+import USERroute from "./Routes/user.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -21,11 +24,13 @@ try{
 };
 
 //middellwar
-
+app.use(cors());
 app.use(cookieParser);
 app.use(express.json());
-app.use("/auth", authroute);
-app.use("/hotel",hotelroute);
+app.use("/api/auth.js", authroute);
+app.use("/api/hotel.js",hotelroute);
+app.use("/api/room.js",roomroute);
+app.use("/api/user.js",USERroute);
 
 
 app.use((err,req,res,next) =>{
