@@ -36,7 +36,7 @@ export const getHotel =async (req,res,next) =>{
         next(err);
     }
 }
-export const getallHotel =async (req,res,next) =>{
+export const getallHotel = async (req,res,next) =>{
     try {
         const Hotels = await HOTEL.find();
         res.status(200).json(Hotels);
