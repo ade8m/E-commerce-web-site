@@ -6,7 +6,7 @@ import hotelroute from "./Routes/hotel.js";
 import roomroute from "./Routes/room.js";
 import USERroute from "./Routes/user.js";
 import cookieParser from "cookie-parser";
-import cors from "cors";
+
 
 const app = express();
 dotenv.config();
@@ -16,7 +16,7 @@ const connect = async () =>{
 
 try{
     
-    await mongoose.connect(process.env.mongo);
+    await mongoose.connect('process.env.mongo');
     console.log("connected to mongoDB.")
 }   catch (error){
     throw error;
@@ -24,7 +24,7 @@ try{
 };
 
 //middellwar
-app.use(cors());
+
 app.use(cookieParser);
 app.use(express.json());
 app.use("/api/auth.js", authroute);
@@ -34,8 +34,8 @@ app.use("/api/user.js",USERroute);
 
 
 app.use((err,req,res,next) =>{
-    const errorStatus = error.status || 500;
-    const errorMessage = error.message ||"something wrong!";
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message ||"something wrong!";
     return res.status(errorStatus).json({
         success:false,
         status: errorStatus,
