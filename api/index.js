@@ -26,12 +26,12 @@ try{
 
 //middellwar
 
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(express.json());
-app.use("/api/auth.js", authroute);
-app.use("/api/hotel.js",hotelroute);
-app.use("/api/room.js",roomroute);
-app.use("/api/user.js",USERroute);
+app.use("/api/auth", authroute);
+app.use("/api/hotel",hotelroute);
+app.use("/api/room",roomroute);
+app.use("/api/user",USERroute);
 
 
 app.use((err,req,res,next) =>{

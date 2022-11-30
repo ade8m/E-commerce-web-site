@@ -22,24 +22,30 @@ export const registre = async (req,res,next) =>{
       }
 }
 export const login = async (req,res,next) =>{
+    console.log("object1");
     try {
+
         const user = await User.findOne({username:req.body.username})
         if(!user) 
-        return next(createError,(404, "user not found"))
+        return next(createError(404, "user not found"))
         const isPasswordCorrect = await bcrypt.compare(req.body.password,  user.password)
-
+        console.log("object");
         if(!isPasswordCorrect) 
 
-                 return next(createError,(400,"wrong user"))
+                 return next(createError(400,"wrong user"))
+        console.log("object1");
 
         const token = jwt.sign({id: user._id,isAdmin:user.isAdmin},process.env.jwt);
-        const { password ,isAdmin,...othersDetails } = user._doc;
-        res
+        
+        console.log("object2");
+
+        return res
         .cookie("Access_token",token,{
             httpOnly:true,
         })
         .status(200).json(user);
     } catch (err) {
+        console.log(err);
         next (err)
     }
 }
