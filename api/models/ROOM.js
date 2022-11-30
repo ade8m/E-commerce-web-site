@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const Roomschema = new Schema({
+const Roomschema = new Schema(
+    {
     title: {
         type: String,
         required: true,
@@ -28,4 +29,4 @@ const Roomschema = new Schema({
 {timestamps:true}
 
 );
-export default mongoose.model("Room",Userschema)
+export default mongoose.model("Room",Roomschema);
