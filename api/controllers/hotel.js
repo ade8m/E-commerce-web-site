@@ -1,4 +1,4 @@
-import HOTEL from "../modules/HOTEL.js"
+import HOTEL from "../models/HOTEL.js"
 export const createHotel =async (req,res,next) =>{
     const newhotel= new HOTEL(req.body)
     try{
@@ -36,7 +36,7 @@ export const getHotel =async (req,res,next) =>{
         next(err);
     }
 }
-export const getallHotel =async (req,res,next) =>{
+export const getallHotel = async (req,res,next) =>{
     try {
         const Hotels = await HOTEL.find();
         res.status(200).json(Hotels);
